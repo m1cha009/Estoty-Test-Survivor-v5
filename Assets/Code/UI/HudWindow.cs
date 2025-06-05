@@ -11,6 +11,7 @@ namespace Code.UI
 	{
 		[SerializeField] private Slider _healthBar;
 		[SerializeField] private Text _killedEnemiesText;
+		[SerializeField] private Slider _xpBar;
 		
 		private IHeroProvider _heroProvider;
 		private IEnemyDeathTracker _enemyDeathTracker;
@@ -28,19 +29,28 @@ namespace Code.UI
 		{
 			UpdateHealthBar();
 			UpdateKilledEnemiesText();
+			UpdateXpBar();
 		}
 
 		private void UpdateKilledEnemiesText()
 		{
 			_killedEnemiesText.text = _enemyDeathTracker.TotalKilledEnemies.ToString();
 		}
-
+		
 		private void UpdateHealthBar()
 		{
 			if (_heroProvider.Hero != null)
 				_healthBar.value = _heroProvider.Health.CurrentHealth / _heroProvider.Health.MaxHealth;
 			else
 				_healthBar.value = 0;
+		}
+
+		private void UpdateXpBar()
+		{
+			if (_heroProvider.Hero != null)
+				_xpBar.value = _heroProvider.Xp.CurrentXp / 10;
+			else
+				_xpBar.value = 0;
 		}
 	}
 }
