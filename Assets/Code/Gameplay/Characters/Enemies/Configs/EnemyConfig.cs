@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Code.Gameplay.Difficulty.Configs;
 using UnityEngine;
 
 namespace Code.Gameplay.Characters.Enemies.Configs
@@ -12,5 +14,6 @@ namespace Code.Gameplay.Characters.Enemies.Configs
 		public float Health = 100f;
 		public float MovementSpeed = 5f;
 		public float Damage = 10f;
+		public List<DifficultyModifier> DifficultyModifiers = new();
 	}
 }

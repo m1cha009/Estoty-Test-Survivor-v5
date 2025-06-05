@@ -1,5 +1,6 @@
 using Code.Gameplay.Characters.Enemies.Behaviours;
 using Code.Gameplay.Characters.Enemies.Configs;
+using Code.Gameplay.Difficulty.Behaviours;
 using Code.Gameplay.Identification.Behaviours;
 using Code.Gameplay.Lifetime.Behaviours;
 using Code.Gameplay.UnitStats;
@@ -39,9 +40,12 @@ namespace Code.Gameplay.Characters.Enemies.Services
 				.SetBaseStat(StatType.MaxHealth, enemyConfig.Health)
 				.SetBaseStat(StatType.MovementSpeed, enemyConfig.MovementSpeed)
 				.SetBaseStat(StatType.Damage, enemyConfig.Damage);
+			
+			enemy.GetComponent<DifficultyEnemyComponent>()
+				.Setup(enemyConfig);
 
 			enemy.GetComponent<Health>()
-				.Setup(enemyConfig.Health, enemyConfig.Health);
+				.SetupCurrentHealth();
 			
 			return enemy;
 		}

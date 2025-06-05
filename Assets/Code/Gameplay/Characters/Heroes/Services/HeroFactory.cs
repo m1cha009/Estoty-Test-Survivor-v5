@@ -47,7 +47,7 @@ namespace Code.Gameplay.Characters.Heroes.Services
 				.SetBaseStat(StatType.Damage, heroConfig.Damage);
 
 			hero.GetComponent<Health>()
-				.Setup(heroConfig.Health, heroConfig.Health);
+				.SetupCurrentHealth();
 			
 			hero.GetComponent<GunOwner>().OwnedGun
 				.GetComponent<Stats>()

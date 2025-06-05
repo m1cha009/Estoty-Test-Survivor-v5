@@ -17,3 +17,10 @@ MonoBehaviour:
   Health: 10
   MovementSpeed: 3
   Damage: 10
+  DifficultyModifiers:
+  - StatType: 1
+    GrowthRate: 5
+    GrowthInterval: 20
+  - StatType: 3
+    GrowthRate: 1
+    GrowthInterval: 40
