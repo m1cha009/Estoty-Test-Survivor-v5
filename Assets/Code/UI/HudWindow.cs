@@ -48,7 +48,7 @@ namespace Code.UI
 		private void UpdateXpBar()
 		{
 			if (_heroProvider.Hero != null)
-				_xpBar.value = _heroProvider.Xp.CurrentXp / 10;
+				_xpBar.value = _heroProvider.Xp.CurrentXp / _heroProvider.Xp.MaxXp;
 			else
 				_xpBar.value = 0;
 		}

@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Gameplay.Characters.Enemies;
 using Code.Gameplay.Characters.Enemies.Configs;
 using Code.Gameplay.Characters.Heroes.Configs;
+using Code.Gameplay.LevelUp.Config;
 using Code.Gameplay.PickUps;
 using Code.Gameplay.PickUps.Configs;
 using Code.Infrastructure.AssetManagement;
@@ -17,6 +18,7 @@ namespace Code.Infrastructure.ConfigsManagement
 		private Dictionary<PickUpId, PickUpConfig> _pickupsById = new();
 
 		public HeroConfig HeroConfig { get; private set; }
+		public LevelUpConfig LevelUpConfig { get; private set; }
 
 		public ConfigsService(IAssetsService assets)
 		{
@@ -28,6 +30,7 @@ namespace Code.Infrastructure.ConfigsManagement
 			LoadHeroConfig();
 			LoadEnemyConfigs();
 			LoadPickUpConfigs();
+			LoadLevelUpConfig();
 		}
 
 		private void LoadPickUpConfigs()
@@ -39,6 +42,11 @@ namespace Code.Infrastructure.ConfigsManagement
 		private void LoadHeroConfig()
 		{
 			HeroConfig = _assets.LoadAssetFromResources<HeroConfig>("Configs/HeroConfig");
+		}
+		
+		private void LoadLevelUpConfig()
+		{
+			LevelUpConfig = _assets.LoadAssetFromResources<LevelUpConfig>("Configs/LevelUp/LevelUpConfig");
 		}
 
 		private void LoadEnemyConfigs()

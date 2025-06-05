@@ -9,6 +9,7 @@ namespace Code.Gameplay.Characters.Heroes.Services
 		Health Health { get; }
 		Stats Stats { get; }
 		Xp Xp { get; }
+		Level Level { get; }
 		void SetHero(Behaviours.Hero hero);
 	}
 }
