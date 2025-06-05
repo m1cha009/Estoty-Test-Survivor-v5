@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 8609352342121007822}
   - component: {fileID: 2575005440371310929}
   - component: {fileID: 104948469687547390}
+  - component: {fileID: 2946898498832071107}
   m_Layer: 6
   m_Name: Enemy_Base
   m_TagString: Untagged
@@ -436,3 +437,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c211efa77bac4267944345fabd1a13ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2946898498832071107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7994187728987921737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727ec8cd43fe4797a8c9b36094c3997a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _possibleLootDrops:
+  - Id: 2
+    Amount: 1
+    Chance: 0.5

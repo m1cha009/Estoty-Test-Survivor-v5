@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 3
   Prefab: {fileID: 7666564588581531939, guid: dfe50815f54b94b399215e73aa4d3025, type: 3}
-  Health: 70
+  Health: 30
   MovementSpeed: 0.5
   Damage: 10
   DifficultyModifiers:
