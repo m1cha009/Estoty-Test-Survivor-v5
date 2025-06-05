@@ -1,6 +1,8 @@
 using System;
 using Code.Gameplay.Characters.Heroes.Services;
 using Code.Infrastructure.ConfigsManagement;
+using Code.Infrastructure.UIManagement;
+using Code.UI;
 using UnityEngine;
 using Zenject;
 
@@ -10,14 +12,16 @@ namespace Code.Gameplay.LevelUp.Services
 	{
 		private IHeroProvider _heroProvider;
 		private IConfigsService _configsService;
+		private IUiService _uiService;
 
 		public event Action<float> OnLevelChanged;
 
 		[Inject]
-		private void Construct(IConfigsService configsService ,IHeroProvider heroProvider)
+		private void Construct(IConfigsService configsService ,IHeroProvider heroProvider, IUiService uiService)
 		{
 			_configsService = configsService;
 			_heroProvider = heroProvider;
+			_uiService = uiService;
 		}
 
 		public void SetXp(float newXp)
@@ -27,6 +31,8 @@ namespace Code.Gameplay.LevelUp.Services
 				_heroProvider.Level.CurrentLevel++;
 				
 				OnLevelChanged?.Invoke(_heroProvider.Level.CurrentLevel);
+
+				_uiService.OpenWindow<LevelUpWindow>();
 			}
 		}
 

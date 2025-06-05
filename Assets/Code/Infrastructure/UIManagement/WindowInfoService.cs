@@ -8,12 +8,14 @@ namespace Code.Infrastructure.UIManagement
 	{
 		private readonly Dictionary<Type, string> _addresses = new()
 		{
-			{typeof(HudWindow), "UI/HudWindow"}
+			{typeof(HudWindow), "UI/HudWindow"},
+			{typeof(LevelUpWindow), "UI/LevelUpWindow"},
 		};
 
 		private readonly Dictionary<Type, int> _orders = new()
 		{
-			{typeof(HudWindow), 0}
+			{typeof(HudWindow), 0},
+			{typeof(LevelUpWindow), 1},
 		};
 
 		public int GetWindowOrder<T>() where T : WindowBase => _orders[typeof(T)];
