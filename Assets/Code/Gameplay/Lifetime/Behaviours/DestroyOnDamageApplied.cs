@@ -13,11 +13,13 @@ namespace Code.Gameplay.Lifetime.Behaviours
 		
 		private IDamageApplier _damageApplier;
 		private ProjectileBounce _projectileBounce;
+		private ProjectilePiercing _projectilePiercing;
 		
 		private void Awake()
 		{
 			_damageApplier = GetComponent<IDamageApplier>();
 			_projectileBounce = GetComponent<ProjectileBounce>();
+			_projectilePiercing = GetComponent<ProjectilePiercing>();
 		}
 
 		private void OnEnable()
@@ -32,7 +34,7 @@ namespace Code.Gameplay.Lifetime.Behaviours
 
 		private void HandleDamageApplied(Health _)
 		{
-			if (_projectileBounce.BouncesLeft > 0)
+			if (_projectileBounce.BouncesLeft > 0 || _projectilePiercing.PiercingLeft > 0)
 			{
 				return;
 			}

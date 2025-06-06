@@ -17,19 +17,12 @@ namespace Code.Gameplay.Lifetime.Behaviours
 		
 		private readonly List<int> _damagedTargetIds = new();
 
-		private float _piercingAmountLeft;
-		
 		public event Action<Health> OnDamageApplied;
 
 		private void Awake()
 		{
 			_stats = GetComponent<Stats>();
 			_team = GetComponent<Team>();
-		}
-
-		private void Start()
-		{
-			_piercingAmountLeft = _stats.GetStat(StatType.PiercingAmount);
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
@@ -73,14 +66,7 @@ namespace Code.Gameplay.Lifetime.Behaviours
 				}
 			}
 			
-			if (_piercingAmountLeft > 0)
-			{
-				_piercingAmountLeft--;
-			}
-			else
-			{
-				OnDamageApplied?.Invoke(health);
-			}
+			OnDamageApplied?.Invoke(health);
 		}
 	}
 }
