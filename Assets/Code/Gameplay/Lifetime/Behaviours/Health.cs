@@ -12,6 +12,7 @@ namespace Code.Gameplay.Lifetime.Behaviours
 		[field: SerializeField] public float MaxHealth { get; private set; }
 		
 		private Stats _stats;
+		private float _healMultiplier = 1;
 		
 		public bool IsDead => CurrentHealth <= 0;
 		
@@ -50,11 +51,13 @@ namespace Code.Gameplay.Lifetime.Behaviours
 
 		public void Heal(float healAmount)
 		{
-			float change = Mathf.Clamp(healAmount, 0, MaxHealth - CurrentHealth);
+			float change = Mathf.Clamp(healAmount * _healMultiplier, 0, MaxHealth - CurrentHealth);
 			CurrentHealth += change;
 			
 			OnHealthChanged?.Invoke(change);
 		}
+		
+		public void SetHealMultiplier(float healMultiplier) => _healMultiplier = healMultiplier;
 
 		private void HandleStatChanged(StatType statType, float value)
 		{

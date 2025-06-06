@@ -28,18 +28,21 @@ namespace Code.Gameplay.Projectiles.Services
 			_assetsService = assetsService;
 		}
 		
-		public Projectile CreateProjectile(Vector3 at, Vector2 direction, TeamType teamType, float damage, float movementSpeed)
+		public Projectile CreateProjectile(Vector3 at, Vector2 direction, TeamType teamType, Stats stats)
 		{
 			var prefab = _assetsService.LoadAssetFromResources<Projectile>("Projectiles/Projectile");
 			Projectile projectile = _instantiateService.InstantiatePrefabForComponent(prefab, at, Quaternion.FromToRotation(Vector3.up, direction));
 			
 			projectile.GetComponent<Id>()
 				.Setup(_identifiers.Next());
-			
-			projectile.GetComponent<Stats>()
-				.SetBaseStat(StatType.MovementSpeed, movementSpeed)
-				.SetBaseStat(StatType.Damage, damage);
 
+			projectile.GetComponent<Stats>()
+				.SetBaseStat(StatType.VisionRange, stats.GetStat(StatType.VisionRange))
+				.SetBaseStat(StatType.MovementSpeed, stats.GetStat(StatType.MovementSpeed))
+				.SetBaseStat(StatType.Damage, stats.GetStat(StatType.Damage))
+				.SetBaseStat(StatType.PiercingAmount, stats.GetStat(StatType.PiercingAmount))
+				.SetBaseStat(StatType.BounceAmount, stats.GetStat(StatType.BounceAmount));
+			
 			projectile.GetComponent<Team>()
 				.Type = teamType;
 			

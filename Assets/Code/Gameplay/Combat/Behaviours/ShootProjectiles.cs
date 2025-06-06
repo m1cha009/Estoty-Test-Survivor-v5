@@ -47,15 +47,14 @@ namespace Code.Gameplay.Combat.Behaviours
 				_shootCooldownTimeLeft = _ownerStats.GetStat(StatType.ShootCooldown);
 			}
 		}
-
+		
 		private void Shoot()
 		{
 			_projectileFactory.CreateProjectile(
 				_shootPoint.position, 
 				_aimDirectionProvider.GetAimDirection(), 
 				_ownerTeam.Type, 
-				_ownerStats.GetStat(StatType.Damage), 
-				_ownerStats.GetStat(StatType.ProjectileSpeed));
+				_ownerStats);
 		}
 	}
 }

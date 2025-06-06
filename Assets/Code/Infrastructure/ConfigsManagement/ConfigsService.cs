@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Abilities.Configs;
 using Code.Gameplay.Characters.Enemies;
 using Code.Gameplay.Characters.Enemies.Configs;
 using Code.Gameplay.Characters.Heroes.Configs;
@@ -7,6 +8,7 @@ using Code.Gameplay.LevelUp.Config;
 using Code.Gameplay.PickUps;
 using Code.Gameplay.PickUps.Configs;
 using Code.Infrastructure.AssetManagement;
+using UnityEngine;
 
 namespace Code.Infrastructure.ConfigsManagement
 {
@@ -16,6 +18,7 @@ namespace Code.Infrastructure.ConfigsManagement
 
 		private Dictionary<EnemyId, EnemyConfig> _enemiesById = new();
 		private Dictionary<PickUpId, PickUpConfig> _pickupsById = new();
+		private List<IAbilityConfig> _allAbilitiesConfigs = new();
 
 		public HeroConfig HeroConfig { get; private set; }
 		public LevelUpConfig LevelUpConfig { get; private set; }
@@ -31,6 +34,7 @@ namespace Code.Infrastructure.ConfigsManagement
 			LoadEnemyConfigs();
 			LoadPickUpConfigs();
 			LoadLevelUpConfig();
+			LoadAbilitiesConfigs();
 		}
 
 		private void LoadPickUpConfigs()
@@ -54,6 +58,14 @@ namespace Code.Infrastructure.ConfigsManagement
 			var enemyConfigs = _assets.LoadAssetsFromResources<EnemyConfig>("Configs/Enemies");
 			_enemiesById = enemyConfigs.ToList().ToDictionary(x => x.Id, x => x);
 		}
+		
+		private void LoadAbilitiesConfigs()
+		{
+			var enemyConfigs = _assets.LoadAssetsFromResources<ScriptableObject>("Configs/Abilities");
+			_allAbilitiesConfigs = enemyConfigs.OfType<IAbilityConfig>().ToList();
+		}
+		
+		public List<IAbilityConfig> GetAllAbilitiesConfigs() => _allAbilitiesConfigs;
 
 		public EnemyConfig GetEnemyConfig(EnemyId id)
 		{

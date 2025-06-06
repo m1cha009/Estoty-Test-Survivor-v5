@@ -29,8 +29,8 @@ namespace Code.Gameplay.Vision.Behaviours
 		{
 			GatherEnemiesInSight();
 		}
-    
-		public GameObject GetClosestEnemy()
+
+		public GameObject GetClosestEnemy(GameObject self = null)
 		{
 			GameObject closest = null;
 			float minDistance = float.MaxValue;
@@ -39,6 +39,11 @@ namespace Code.Gameplay.Vision.Behaviours
 			{
 				if (enemy == null)
 					continue;
+
+				if (enemy == self)
+				{
+					continue;
+				}
 
 				float distance = Vector3.Distance(transform.position, enemy.transform.position);
 

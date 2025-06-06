@@ -10,5 +10,7 @@ namespace Code.Gameplay.UnitStats
 		RotationSpeed = 5, 
 		ProjectileSpeed = 6,
 		ShootCooldown = 7,
+		PiercingAmount = 8,
+		BounceAmount = 9,
 	}
 }

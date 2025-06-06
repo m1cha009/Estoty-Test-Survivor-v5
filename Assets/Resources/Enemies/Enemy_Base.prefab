@@ -452,4 +452,4 @@ MonoBehaviour:
   _possibleLootDrops:
   - Id: 2
     Amount: 1
-    Chance: 0.5
+    Chance: 1

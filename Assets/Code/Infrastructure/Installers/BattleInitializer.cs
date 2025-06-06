@@ -47,6 +47,7 @@ namespace Code.Infrastructure.Installers
 			_heroFactory.CreateHero(Vector3.zero, Quaternion.identity);
 
 			_uiService.OpenWindow<HudWindow>();
+			_uiService.OpenWindow<LevelUpWindow>(); // for debugging
 		}
 	}
 }

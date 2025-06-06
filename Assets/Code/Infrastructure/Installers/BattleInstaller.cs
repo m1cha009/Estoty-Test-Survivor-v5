@@ -1,3 +1,4 @@
+using Code.Gameplay.Abilities.Services;
 using Code.Gameplay.Cameras.Services;
 using Code.Gameplay.Characters.Enemies.Services;
 using Code.Gameplay.Characters.Heroes.Services;
@@ -21,6 +22,7 @@ namespace Code.Infrastructure.Installers
 
 			Container.BindInterfacesTo<DifficultyService>().AsSingle();
 			Container.BindInterfacesTo<LevelUpService>().AsSingle();
+			Container.BindInterfacesTo<AbilitiesService>().AsSingle();
 		}
 
 		private void BindPickupServices()
