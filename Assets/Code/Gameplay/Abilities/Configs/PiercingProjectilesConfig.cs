@@ -8,5 +8,6 @@ namespace Code.Gameplay.Abilities.Configs
 		[field: SerializeField] public AbilityType AbilityType { get; private set; }
 		[field: SerializeField] public bool IsStackable { get; private set; }
 		[field: SerializeField] public string Description { get; private set; }
+		[field: SerializeField] public float PiercingAmount { get; private set; }
 	}
 }

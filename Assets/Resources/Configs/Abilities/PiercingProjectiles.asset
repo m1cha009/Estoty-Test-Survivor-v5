@@ -16,3 +16,4 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <Description>k__BackingField: 'Piercing Projectiles: Projectiles can pass through
     enemies.'
+  <PiercingAmount>k__BackingField: 1

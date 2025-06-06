@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Code.Gameplay.Abilities.Configs;
 using Code.Gameplay.Characters.Heroes.Services;
+using Code.Gameplay.Guns.Behaviours;
 using Code.Gameplay.UnitStats;
+using Code.Gameplay.UnitStats.Behaviours;
 using Code.Infrastructure.ConfigsManagement;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -54,6 +56,10 @@ namespace Code.Gameplay.Abilities.Services
 			{
 				ApplyBouncingProjectileAbility(bouncingProjectilesConfig);
 			}
+			else if (abilityConfig is AgilityUpAbilityConfig agilityUpAbilityConfig)
+			{
+				ApplyAgilityUpAbility(agilityUpAbilityConfig);
+			}
 			else if (abilityConfig is HealUpAbilityConfig healAbilityConfig)
 			{
 				ApplyHealUpAbility(healAbilityConfig);
@@ -71,7 +77,7 @@ namespace Code.Gameplay.Abilities.Services
 		
 		private void ApplyPiercingProjectileAbility(PiercingProjectilesConfig piercingProjectilesConfig)
 		{
-			var statModifier = new StatModifier(StatType.PiercingAmount, 1);
+			var statModifier = new StatModifier(StatType.PiercingAmount, piercingProjectilesConfig.PiercingAmount);
 			
 			_heroProvider.Stats.AddStatModifier(statModifier);
 		}
@@ -81,6 +87,13 @@ namespace Code.Gameplay.Abilities.Services
 			var statModifier = new StatModifier(StatType.BounceAmount, bouncingProjectilesConfig.BounceAmount);
 			
 			_heroProvider.Stats.AddStatModifier(statModifier);
+		}
+		
+		private void ApplyAgilityUpAbility(AgilityUpAbilityConfig agilityUpAbilityConfig)
+		{
+			var statModifier = new StatModifier(StatType.RotationSpeed, agilityUpAbilityConfig.Modifier);
+			
+			_heroProvider.Hero.GetComponent<GunOwner>().OwnedGun.GetComponent<Stats>().AddStatModifier(statModifier);
 		}
 		
 		private void ApplyHealUpAbility(HealUpAbilityConfig healUpAbilityConfig)
