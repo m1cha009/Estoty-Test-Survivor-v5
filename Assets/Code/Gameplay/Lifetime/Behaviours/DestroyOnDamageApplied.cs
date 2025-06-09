@@ -4,7 +4,6 @@ using UnityEngine;
 namespace Code.Gameplay.Lifetime.Behaviours
 {
 	[RequireComponent(typeof(IDamageApplier))]
-	[RequireComponent(typeof(ProjectileBounce))]
 	public class DestroyOnDamageApplied : MonoBehaviour
 	{
 		[SerializeField] private float _delay;
@@ -32,9 +31,14 @@ namespace Code.Gameplay.Lifetime.Behaviours
 
 		private void HandleDamageApplied(Health _)
 		{
-			if (_projectileBounce.BouncesLeft > 0 || _projectilePiercing.PiercingLeft > 0)
+			if (_projectileBounce != null )
 			{
-				return;
+				if (_projectileBounce.BouncesLeft > 0) return;
+			}
+			
+			if (_projectilePiercing != null )
+			{
+				if (_projectilePiercing.PiercingLeft > 0) return;
 			}
 			
 			Destroy(gameObject, _delay);
