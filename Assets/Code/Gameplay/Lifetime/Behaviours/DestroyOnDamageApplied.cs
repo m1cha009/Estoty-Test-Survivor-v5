@@ -1,11 +1,9 @@
 using Code.Gameplay.Projectiles.Behaviours;
-using Code.Gameplay.UnitStats.Behaviours;
 using UnityEngine;
 
 namespace Code.Gameplay.Lifetime.Behaviours
 {
 	[RequireComponent(typeof(IDamageApplier))]
-	[RequireComponent(typeof(Stats))]
 	[RequireComponent(typeof(ProjectileBounce))]
 	public class DestroyOnDamageApplied : MonoBehaviour
 	{

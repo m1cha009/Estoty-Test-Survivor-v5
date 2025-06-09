@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Code.Gameplay.Abilities.Configs;
 using Code.Gameplay.Characters.Heroes.Services;
 using Code.Gameplay.Guns.Behaviours;
+using Code.Gameplay.Projectiles.Behaviours;
 using Code.Gameplay.UnitStats;
 using Code.Gameplay.UnitStats.Behaviours;
 using Code.Infrastructure.ConfigsManagement;
@@ -56,6 +57,10 @@ namespace Code.Gameplay.Abilities.Services
 			{
 				ApplyBouncingProjectileAbility(bouncingProjectilesConfig);
 			}
+			else if (abilityConfig is OrbitingProjectilesConfig orbitingProjectilesConfig)
+			{
+				ApplyOrbitingProjectileAbility(orbitingProjectilesConfig);
+			}
 			else if (abilityConfig is AgilityUpAbilityConfig agilityUpAbilityConfig)
 			{
 				ApplyAgilityUpAbility(agilityUpAbilityConfig);
@@ -87,6 +92,16 @@ namespace Code.Gameplay.Abilities.Services
 			var statModifier = new StatModifier(StatType.BounceAmount, bouncingProjectilesConfig.BounceAmount);
 			
 			_heroProvider.Stats.AddStatModifier(statModifier);
+		}
+		
+		private void ApplyOrbitingProjectileAbility(OrbitingProjectilesConfig orbitingProjectilesConfig)
+		{
+			_heroProvider.Health
+				.GetComponentInChildren<OrbitProjectiles>()
+				.Setup(orbitingProjectilesConfig.OrbitsAmount, 
+					orbitingProjectilesConfig.OrbitsRadius, 
+					orbitingProjectilesConfig.OrbitsSpeed,
+					_heroProvider.Stats);
 		}
 		
 		private void ApplyAgilityUpAbility(AgilityUpAbilityConfig agilityUpAbilityConfig)

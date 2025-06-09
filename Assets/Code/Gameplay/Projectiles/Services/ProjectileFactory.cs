@@ -51,5 +51,23 @@ namespace Code.Gameplay.Projectiles.Services
 			
 			return projectile;
 		}
+		
+		public OrbitProjectile CreateOrbitProjectile(Vector3 at, Vector2 direction, TeamType teamType, Stats stats)
+		{
+			var prefab = _assetsService.LoadAssetFromResources<OrbitProjectile>("Projectiles/OrbitProjectile");
+			OrbitProjectile projectile = _instantiateService.InstantiatePrefabForComponent(prefab, at, Quaternion.FromToRotation(Vector3.up, direction));
+			
+			projectile.GetComponent<Id>()
+				.Setup(_identifiers.Next());
+
+			projectile.GetComponent<Stats>()
+				.SetBaseStat(StatType.MovementSpeed, stats.GetStat(StatType.MovementSpeed))
+				.SetBaseStat(StatType.Damage, stats.GetStat(StatType.Damage));
+			
+			projectile.GetComponent<Team>()
+				.Type = teamType;
+			
+			return projectile;
+		}
 	}
 }

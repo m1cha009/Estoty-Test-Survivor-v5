@@ -84,6 +84,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6409088126907693241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7236430211581119563}
+  - component: {fileID: 7205372985437380653}
+  m_Layer: 7
+  m_Name: OrbitProjectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7236430211581119563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409088126907693241}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1535808264198279393}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7205372985437380653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409088126907693241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0723badf296f417eb320e91483127d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ownerStats: {fileID: 2138147819601370093}
+  _orbitAmount: 3
+  _orbitRadius: 5
+  _orbitSpeed: 50
 --- !u!1 &6674150144644033288
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +321,7 @@ Transform:
   - {fileID: 7396352014097024425}
   - {fileID: 2125017417248292774}
   - {fileID: 5823930791917570769}
+  - {fileID: 7236430211581119563}
   m_Father: {fileID: 6600384149582143742}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1884878447575953935
@@ -576,6 +625,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d323b35fac9249b0b7e118a82b0609b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CurrentXp>k__BackingField: 0
+  <MaxXp>k__BackingField: 0
 --- !u!114 &7596512027879173555
 MonoBehaviour:
   m_ObjectHideFlags: 0
