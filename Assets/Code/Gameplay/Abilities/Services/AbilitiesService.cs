@@ -13,26 +13,21 @@ namespace Code.Gameplay.Abilities.Services
 {
 	public class AbilitiesService : IAbilitiesService
 	{
-		private IConfigsService _configsService;
 		private IHeroProvider _heroProvider;
+		
+		private List<IAbilityConfig> _availableAbilityConfigs = new();
 
 		[Inject]
 		private void Construct(IConfigsService configsService, IHeroProvider heroProvider)
 		{
-			_configsService = configsService;
 			_heroProvider = heroProvider;
-		}
-		
-		public List<IAbilityConfig> GetCurrentAppliedAbilities()
-		{
-			return null;
+			
+			_availableAbilityConfigs = configsService.GetAllAbilitiesConfigs();
 		}
 		
 		public List<IAbilityConfig> GetRandomAbilities(int count)
 		{
-			var allAbilities = _configsService.GetAllAbilitiesConfigs();
-			
-			var randAbilityConfigs = new List<IAbilityConfig>(allAbilities);
+			var randAbilityConfigs = new List<IAbilityConfig>(_availableAbilityConfigs);
 			
 			for (int i = 0; i < count; i++)
 			{
@@ -72,6 +67,11 @@ namespace Code.Gameplay.Abilities.Services
 			else if (abilityConfig is DamageUpAbilityConfig damageUpAbilityConfig)
 			{
 				ApplyDamageUpAbility(damageUpAbilityConfig);
+			}
+
+			if (!abilityConfig.IsStackable)
+			{
+				_availableAbilityConfigs.Remove(abilityConfig);
 			}
 		}
 		

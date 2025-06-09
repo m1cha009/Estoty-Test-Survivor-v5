@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PiercingProjectiles
   m_EditorClassIdentifier: 
   <AbilityType>k__BackingField: 2
-  <IsStackable>k__BackingField: 0
+  <IsStackable>k__BackingField: 1
   <Description>k__BackingField: 'Piercing Projectiles: Projectiles can pass through
     enemies.'
   <PiercingAmount>k__BackingField: 1

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DamageUpAbility
   m_EditorClassIdentifier: 
   <AbilityType>k__BackingField: 7
-  <IsStackable>k__BackingField: 0
+  <IsStackable>k__BackingField: 1
   <Description>k__BackingField: "Damage Up: The player\u2019s Damage increases."
   <Modifier>k__BackingField: 1
