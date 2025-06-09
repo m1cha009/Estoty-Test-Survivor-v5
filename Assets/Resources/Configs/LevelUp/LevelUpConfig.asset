@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046d5d450b2e4b10ab4e395cedb25104, type: 3}
   m_Name: LevelUpConfig
   m_EditorClassIdentifier: 
-  LevelOneMaxXp: 6
+  LevelOneMaxXp: 10
   ExponentialLevelMultiplier: 1.5
