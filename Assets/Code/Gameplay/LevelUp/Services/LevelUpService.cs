@@ -32,7 +32,7 @@ namespace Code.Gameplay.LevelUp.Services
 				
 				OnLevelChanged?.Invoke(_heroProvider.Level.CurrentLevel);
 
-				_uiService.OpenWindow<LevelUpWindow>();
+				_uiService.OpenWindow<LevelUpWindow>(true);
 			}
 		}
 

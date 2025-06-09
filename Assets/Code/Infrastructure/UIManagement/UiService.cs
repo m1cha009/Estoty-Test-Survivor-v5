@@ -9,6 +9,7 @@ namespace Code.Infrastructure.UIManagement
     private readonly IUIRootProvider _uiRootProvider;
     private readonly IWindowInfoService _windowInfoService;
     private readonly List<WindowBase> _hierarchy = new();
+    private bool _pauseGame;
 
     public UiService(IUiFactory uiFactory, IUIRootProvider uiRootProvider, IWindowInfoService windowInfoService)
     {
@@ -30,8 +31,9 @@ namespace Code.Infrastructure.UIManagement
       return null;
     }
 
-    public T OpenWindow<T>() where T : WindowBase
+    public T OpenWindow<T>(bool pauseGame = false) where T : WindowBase
     {
+      _pauseGame = pauseGame;
       var openedWindow = GetWindow<T>();
 
       if (openedWindow != null)
@@ -40,6 +42,12 @@ namespace Code.Infrastructure.UIManagement
       var window = _uiFactory.CreateWindow<T>(_uiRootProvider.UiRoot);
       window.Initialize();
       PutInHierarchy(window);
+
+      if (_pauseGame)
+      {
+        Time.timeScale = 0;
+      }
+      
       return window;
     }
 
@@ -66,6 +74,11 @@ namespace Code.Infrastructure.UIManagement
         _hierarchy.Remove(window);
         Object.Destroy(window.gameObject);
       }
+
+      if (_pauseGame)
+      {
+        Time.timeScale = 1;
+      }
     }
     
     public void CloseWindow(WindowBase windowBase)
@@ -90,6 +103,11 @@ namespace Code.Infrastructure.UIManagement
         WindowBase window = _hierarchy[i];
         _hierarchy.Remove(window);
         Object.Destroy(window.gameObject);
+      }
+      
+      if (_pauseGame)
+      {
+        Time.timeScale = 1;
       }
     }
 
